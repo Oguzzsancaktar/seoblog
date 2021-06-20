@@ -7,7 +7,8 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 // Bring Routes 
-const blogRoutes = require('./routes/blog')
+const blogRoutes = require('./routes/blog');
+const authRoutes = require('./routes/auth');
 
 // APP
 const app = express();
@@ -34,6 +35,8 @@ app.use(cookieParser());
 
 // Routes Middleware
 app.use('/api',blogRoutes)
+app.use('/api',authRoutes)
+
 
 // //routes
 // app.get("/api", (req, res) => {
