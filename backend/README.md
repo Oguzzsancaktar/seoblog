@@ -20,6 +20,11 @@
 - First thing first you need to create your project folders. 
 - We will study like FullStack so we need to "Backend" and "Frontend" Folders.
 - I started to create Server.js for node.js server. 
+
+```
+npm init -y
+
+```
 - For Saving our project on cloud I will use github. So need to say npm init -y in our backend folder. This will give us package.json file. "-y" is gives us the default package.json file. If you want to configure it you need to say just "npm init"
 
 
