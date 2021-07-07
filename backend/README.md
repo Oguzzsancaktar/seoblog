@@ -128,6 +128,20 @@ process.env.VARIABLE_NAME
 
 ## After configure server js 
 
+- first thing first we need to create app constant from express
+```javascript
+const app = express()
+```
+
+- after this add middlevares to app
+```javascript
+app.use(morgan('dev'))
+app.use(bodyParser.json())
+app.use(cookieParser.json())
+```
+
+
+
 
 
 
