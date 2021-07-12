@@ -5,7 +5,6 @@ export const signup = (user) => {
 
   return fetch(`${API}/signup`, {
     method: 'POST',
-    mode:'no-cors',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json'
