@@ -28,6 +28,7 @@ exports.signup = (req, res) => {
       // res.json({
       //   user:success
       // })
+
       res.json({
         message: 'Signup Success please sign in'
       })

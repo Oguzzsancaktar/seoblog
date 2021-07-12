@@ -14,8 +14,7 @@ const authRoutes = require('./routes/auth');
 const app = express();
 
 // DB
-mongoose
-  .connect(process.env.DATABASE_LOCAL, {
+mongoose.connect(process.env.DATABASE_LOCAL, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
@@ -29,7 +28,7 @@ mongoose
 
 // MiddleWares
 app.use(morgan("dev"));
-app.use(bodyParser.json());
+app.use(bodyParser.json()); 
 app.use(cookieParser());
 
 
@@ -37,6 +36,8 @@ app.use(cookieParser());
 app.use('/api',blogRoutes)
 app.use('/api',authRoutes)
 
+// app.use('/',blogRoutes)
+// app.use('/',authRoutes)
 
 // //routes
 // app.get("/api", (req, res) => {
@@ -46,7 +47,7 @@ app.use('/api',authRoutes)
 // Cors
 if (process.env.NODE_ENV === "development") {
   app.use(cors({ origin: `${process.env.CLIENT_URL}` }));
-  console.log(`${("Cors Console :>)", process.env.CLIENT_URL)}`);
+  console.log(`${("Cors Console => ", process.env.CLIENT_URL)}`);
 }
 
 
