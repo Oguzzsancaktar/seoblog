@@ -46,8 +46,11 @@ app.use('/api',authRoutes)
 
 // Cors
 if (process.env.NODE_ENV === "development") {
-  app.use(cors({ origin: `${process.env.CLIENT_URL}` }));
-  console.log(`${("Cors Console => ", process.env.CLIENT_URL)}`);
+
+  console.log("cors running");
+  app.use(cors({ origin: `${process.env.CLIENT_URL}`}));
+  console.log(`${"Cors Console => ", process.env.CLIENT_URL}`);
+
 }
 
 
@@ -56,3 +59,5 @@ const port = process.env.PORT || 8000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+
