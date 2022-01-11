@@ -5,11 +5,11 @@ const expressJwt = require("express-jwt");
 
 exports.signup = (req, res) => {
   User.findOne({ email: req.body.email }).exec((err, user) => {
-    // if (user) {
-    //   return res.status(400).json({
-    //     error: "Email is taken",
-    //   });
-    // }
+    if (user) {
+      return res.status(400).json({
+        error: "Email is taken",
+      });
+    }
     const { name, email, password } = req.body;
     let username = shortid.generate();
     let profile = `${process.env.CLIENT_URL}/profile/${username}`;
@@ -21,12 +21,12 @@ exports.signup = (req, res) => {
           error: err,
         });
       }
-      res.json({
-        user: success,
-      });
       // res.json({
-      //   message: "Signup success. Please sign in !",
+      //   user: success,
       // });
+      res.json({
+        message: "Signup success. Please sign in !",
+      });
     });
   });
 };
@@ -37,7 +37,7 @@ exports.signin = (req, res) => {
   User.findOne({ email: email }).exec((err, user) => {
     if (err || !user) {
       return res.status(400).json({
-        error: "User with that email does not exist, Please signin !",
+        error: "User with that email does not exist, Please signup !",
       });
     }
     // authenticate
