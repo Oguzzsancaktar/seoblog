@@ -1,6 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const { signup, signin, signout, requireSignin } = require("../controllers/auth");
+const {
+  signup,
+  signin,
+  signout,
+  requireSignin,
+} = require("../controllers/auth");
 
 // validationResult
 const { runValidation } = require("../validators");
@@ -11,11 +16,13 @@ const {
 
 router.post("/signup", userSignupValidator, runValidation, signup);
 router.post("/signin", userSigninValidator, runValidation, signin);
-router.get("/signout", signout);
+router.get("/signout", requireSignin,signout);
 
-router.get("/secret",requireSignin, (req, res) => {
-  res.json({ message: "you reached secret page" });
+router.get("/secret", requireSignin, (req, res) => {
+  console.log(req.user);
+  res.json({
+    user: req.user,
+  });
 });
 
 module.exports = router;
- 
