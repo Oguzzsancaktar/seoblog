@@ -12,6 +12,12 @@ import { APP_NAME } from "../config";
 import Link from "next/link";
 import { signout, isAuth } from "../actions/auth";
 import Router from "next/router";
+import NProgress from 'nprogress'
+import '../node_modules/nprogress/nprogress.css'
+
+Router.onRouteChangeStart = url=> NProgress.start()
+Router.onRouteChangeComplete = url=>NProgress.done()
+Router.onRouteChangeError =url=> NProgress.done();
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);

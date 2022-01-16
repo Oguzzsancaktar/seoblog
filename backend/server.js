@@ -3,14 +3,15 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 require("dotenv").config();
 
 // bring routes
-const blogRoutes = require("./routes/blog")
-const authRoutes = require("./routes/auth")
-const userRoutes = require("./routes/user")
-
+const blogRoutes = require("./routes/blog");
+const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/user");
+const categoryRoutes = require("./routes/category");
+const tagRoutes = require("./routes/tag");
 
 // app
 const app = express();
@@ -23,7 +24,7 @@ if (process.env.NODE_ENV === "development") {
 // DB
 mongoose
   .connect(process.env.DATABASE_LOCAL, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
   })
   .then(() => {
     console.log("DB Connected");
@@ -35,9 +36,11 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 // routes middleware
-app.use('/api', blogRoutes)
-app.use('/api', authRoutes)
-app.use('/api', userRoutes)
+app.use("/api", blogRoutes);
+app.use("/api", authRoutes);
+app.use("/api", userRoutes);
+app.use("/api", categoryRoutes);
+app.use("/api", tagRoutes);
 
 // routes
 app.get("/api", (req, res) => {
